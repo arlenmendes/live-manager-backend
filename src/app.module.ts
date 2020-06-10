@@ -3,6 +3,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { LivesModule } from './lives/lives.module';
+import { Live } from './lives/live.model';
 
 @Module({
   imports: [
@@ -16,7 +18,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       password: process.env.TYPEORM_PASSWORD,
       database: process.env.TYPEORM_DATABASE,
       synchronize: true,
+      entities: [Live],
     }),
+    LivesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
